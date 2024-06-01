@@ -1,0 +1,7 @@
+{
+  "name": "Quecomo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

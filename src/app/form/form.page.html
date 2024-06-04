@@ -1,0 +1,43 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">form</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- creacion campos formulario -->
+  <ion-card>
+    <ion-card-title>Formulario registro</ion-card-title>
+    <div class="card-content">
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" max-length="15" min-length="3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" max-length="15" min-length="3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" max-length="15" min-length="3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirmar password</ion-label>
+          <ion-input type="password" max-length="15" min-length="3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input
+            type="email"
+            maxlength="254"
+            minlength="5"
+            required
+          ></ion-input>
+        </ion-item>
+        <div class="button-container">
+          <ion-button (click)="presentAlert()">sign in</ion-button>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>

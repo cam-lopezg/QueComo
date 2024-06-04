@@ -1,0 +1,37 @@
+.button-container{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente si el contenedor tiene altura suficiente */
+  
+}
+
+ion-button{
+    --background: #FF4233;
+}
+
+.card-content{
+    background-color: #b11f1f22;
+}
+
+ion-card-content{
+    background-color: #ff413300;
+
+}
+ion-item{
+    background-color: #ff413300;
+}
+ion-label{
+    background-color: #ff413300;
+}
+ion-input{
+    background-color: #ff413300;
+}
+ion-content::part(background) {
+    --background: url("../../assets/icon/pasta\ fondo.jpg") no-repeat center center / cover;
+    height: 100vh
+
+  }
+  
+ion-content::part(scroll) {
+    color: #fff;
+  }

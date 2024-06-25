@@ -1,0 +1,53 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+<!-- Contenido de la página aquí -->
+<!-- tarjeta para poner todo adentro -->
+<div class="ion-text-center cuerpo_page">
+  <ion-card>
+   
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class= "ion-text-center ">
+          <img class= "logo" src="../../assets/icon/DALLE2~1.JPG" alt="logo" />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+
+      <!-- creacion campos login -->
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input
+            type="text"
+            maxlength="10"
+            minlength="3"
+            [(ngModel)]="Usuario"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            type="password"
+            maxlength="10"
+            minlenghth="3"
+            [(ngModel)]="Password"
+          ></ion-input>
+        </ion-item>
+      </ion-card-content>
+      <ion-button (click)="login()">Sign in</ion-button>
+
+      <ion-button (click)="register()">Si aun no tienes cuenta, Registrate!</ion-button>
+      <mat-spinner></mat-spinner>
+
+    </ion-card>
+  </div>
+</ion-content>
+
+
+
+

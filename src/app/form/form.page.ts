@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.page.html',
@@ -8,40 +9,56 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class FormPage implements OnInit {
   isAlertOpen = false;
-  Nombre: string = "";
-  Usuario: string = "";
-  Password: string = "";
-  Confirmarpassword: string = "";
-  Email: string = "";
+  nombre: string = "";
+  usuario: string = "";
+  password: string = "";
+  password2: string = "";
+  email: string = "";
+  passwordValid: boolean = false;
+  passwordErrors: { [key: string]: boolean } = {
+    minLength: false,
+    hasUpperCase: false,
+    hasSymbol: false
+  
+  };
 
-  constructor(private alertController: AlertController, private router:Router) {}
+  constructor(private alertController: AlertController, private router: Router) {}
 
   ngOnInit() {
+
   }
 
+  validatePassword() {
+    this.passwordErrors['minLength'] = this.password.length < 6;
+    this.passwordErrors['hasUpperCase'] = !/[A-Z]/.test(this.password);
+    this.passwordErrors['hasSymbol'] = !/[\W_]/.test(this.password);
 
-  form(){
+    this.passwordValid = !this.passwordErrors['minLength'] && !this.passwordErrors['hasUpperCase'] && !this.passwordErrors['hasSymbol'];
+  }
 
-    //validaciones
-    //si sale bien hago un this.router.navigate(['/login'])
-    //si sale mal uso el metodo this.presentAlert()
-    if (this.Nombre.trim()=='camila' && this.Usuario.trim()=='camila1' && this.Password.trim()=='camila' && this.Confirmarpassword.trim()=='camila' && this.Email.trim()=='ping.camila@gmail.com' ){
-      let NavigationExtras: NavigationExtras;{
-
-      }
-      this.router.navigate(['/login']);
-    }
-    else{
+  form() {
+    if (this.passwordValid && this.password === this.password2 && this.nombre.trim() && this.usuario.trim() && this.email.trim()) {
+      let navigationExtras: NavigationExtras = {
+        state: {
+          usuarioCorrecto: this.usuario,
+          contrasenaCorrecta: this.password
+        }
+      };
+      this.router.navigate(['/login'], navigationExtras);
+    } else {
       this.presentAlert();
     }
   }
+
   setOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen;
   }
 
-  guardarDatos(){
-    localStorage.setItem('token', this.Usuario);
+  guardarDatos() {
+    localStorage.setItem('token', this.usuario);
+    console.log('usuario guardado')
   }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Aviso Importante',
@@ -67,8 +84,5 @@ export class FormPage implements OnInit {
 
     this.setOpen(true);
     await alert.present();
-  
   }
 }
-
-

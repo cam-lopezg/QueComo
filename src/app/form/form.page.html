@@ -4,41 +4,48 @@
       <ion-title size="large">form</ion-title>
     </ion-toolbar>
   </ion-header>
-  <!-- creacion campos formulario -->
+  
+  <!-- Creación campos formulario -->
   <ion-card>
-    <ion-card-title class="ion-padding"> Formulario registro</ion-card-title>
+    <ion-card-title class="ion-padding">Formulario registro</ion-card-title>
     <div class="card-content">
       <ion-card-content>
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="text" max-length="15" min-length="3"></ion-input>
+          <ion-input type="text" maxlength="15" minlength="3" [(ngModel)]="nombre"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" max-length="15" min-length="3"></ion-input>
+          <ion-input type="text" maxlength="15" minlength="3" [(ngModel)]="usuario"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" max-length="15" min-length="3"></ion-input>
+          <ion-input type="password" maxlength="15" minlength="6" [(ngModel)]="password" (ngModelChange)="validatePassword()"></ion-input>
         </ion-item>
+        <div *ngIf="password && !passwordValid">
+          <div *ngIf="passwordErrors['minLength'] ">
+            La contraseña debe tener al menos 6 caracteres.
+          </div>
+          <div *ngIf="passwordErrors['hasUpperCase']">
+            La contraseña debe tener al menos una letra mayúscula.
+          </div>
+          <div *ngIf="passwordErrors['hasSymbol']">
+            La contraseña debe tener al menos un símbolo.
+          </div>
+        </div>
         <ion-item>
           <ion-label position="floating">Confirmar password</ion-label>
-          <ion-input type="password" max-length="15" min-length="3"></ion-input>
+          <ion-input type="password" maxlength="15" minlength="6" [(ngModel)]="password2"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input
-            type="email"
-            maxlength="254"
-            minlength="5"
-            required
-          ></ion-input>
+          <ion-input type="email" maxlength="254" minlength="5" required [(ngModel)]="email"></ion-input>
         </ion-item>
         <div class="button-container">
-          <!-- <ion-button (click)="guardarDatos()" >Sign up</ion-button> -->
-          <ion-button (click)="form()">Sign up</ion-button>
+          <ion-button (click)="form()" [disabled]="!passwordValid">Sign up</ion-button>
         </div>
       </ion-card-content>
     </div>
   </ion-card>
 </ion-content>
+

@@ -38,6 +38,9 @@ export class FormPage implements OnInit {
 
   form() {
     if (this.passwordValid && this.password === this.password2 && this.nombre.trim() && this.usuario.trim() && this.email.trim()) {
+
+      localStorage.setItem('nombreUsuario', this.nombre);
+      localStorage.setItem('emailUsuario', this.email);
       let navigationExtras: NavigationExtras = {
         state: {
           usuarioCorrecto: this.usuario,
@@ -48,6 +51,10 @@ export class FormPage implements OnInit {
     } else {
       this.presentAlert();
     }
+  }
+
+  login() {
+    this.router.navigate(['/login']);
   }
 
   setOpen(isOpen: boolean) {
@@ -84,5 +91,7 @@ export class FormPage implements OnInit {
 
     this.setOpen(true);
     await alert.present();
+
+ 
   }
 }

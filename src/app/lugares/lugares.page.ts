@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-lugares',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LugaresPage implements OnInit {
 
-  constructor() { }
+  constructor(private iab: InAppBrowser) { }
+
+  openGoogleMaps() {
+    const browser = this.iab.create('https://www.google.com/maps', '_system');
+  }
 
   ngOnInit() {
   }
 
 }
+
+
+
